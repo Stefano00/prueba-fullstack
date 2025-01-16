@@ -151,6 +151,14 @@ Esto levantará el backend y estará disponible en http://localhost:8080. Asegú
 ## **Ejecución con Docker Compose**
 
  **Levantar Front, back y DB con Docker Compose**:
+Al descargar el repositorio del front-end: https://github.com/Stefano00/prueba-tenpo-front
+y backend: https://github.com/Stefano00/prueba-fullstack
+Se debe mover el archivo docker-compose.yml del repositorio https://github.com/Stefano00/prueba-fullstack a una carpeta superior, es decir la estructura de carpetas quedaría de la siguiente manera:
+
+    carpeta_cualquiera/
+    ├── docker-compose.yml
+    ├── prueba-fullstack/ (repositorio del backend)
+    └── prueba-tenpo-front/ (repositorio del frontend)
 
 Ejecutar docker-compose:
     
@@ -172,14 +180,15 @@ Base de datos PostgreSQL: Corriendo en el puerto 5432.
     
     
     NOTA: Asegurarse de que los puertos 3000, 8080 y 5432 estén libres antes de ejecutar los contenedores.
-
+    Si por algún motivo la base de datos postgres está activa, con el siguiente comando se puede detener:
+    systemctl stop postgresql
 ---
 
 ## **Documentación de la API**
 
 La documentación de la API está disponible en Swagger UI:
 
-- **URL**: `http://localhost:8080/swagger-ui.html`
+- **URL**: http://localhost:8080/swagger-ui.html
 
 ---
 
