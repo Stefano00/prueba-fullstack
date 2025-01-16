@@ -154,7 +154,7 @@ Esto levantará el backend y estará disponible en http://localhost:8080. Asegú
 Ejecutar docker-compose:
     
     docker pull stefano00123/prueba-fullstack:v1
-    docker pull stefano00123/prueba-tenpo-fullstack:latest
+    docker pull stefano00123/prueba-tenpo-front:latest
     docker pull postgres:14-alpine
 
     docker-compose down -v

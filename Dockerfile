@@ -1,3 +1,9 @@
+FROM maven:3.8.8-openjdk-17 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+
 FROM openjdk:17-jdk-alpine
 
 # Copia el JAR compilado dentro de la imagen
