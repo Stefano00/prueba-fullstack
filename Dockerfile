@@ -1,24 +1,17 @@
-FROM maven:3.8.8-openjdk-17 AS build
+# Primera etapa: Construcción con Maven
+FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-
+# Segunda etapa: Imagen ligera para ejecutar el JAR
 FROM openjdk:17-jdk-alpine
 
-# Copia el JAR compilado dentro de la imagen
-COPY target/prueba-fullstack-0.0.1-SNAPSHOT.jar app.jar
+# Copia el archivo JAR desde la etapa de construcción
+COPY --from=build /app/target/prueba-fullstack-0.0.1-SNAPSHOT.jar app.jar
 
-# (Opcional) Documentar la exposición del puerto 8080
+# Expone el puerto 8080
 EXPOSE 8080
 
-# Comando de inicio
+# Comando de inicio de la aplicación
 ENTRYPOINT ["java", "-jar", "/app.jar"]
-
-#mvn clean package
-#sudo systemctl stop postgresql
-#docker build -t usuario/prueba-fullstack:v1 .
-#docker compose down
-#docker compose rm
-#docker compose up --build
-	
