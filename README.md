@@ -160,7 +160,7 @@ Se debe mover el archivo docker-compose.yml del repositorio https://github.com/S
     ├── prueba-fullstack/ (repositorio del backend)
     └── prueba-tenpo-front/ (repositorio del frontend)
 
-Ejecutar docker-compose:
+Dentro de la carpeta que contiene los proyectos y el docker compose, abrir una terminal y ejecutar lo siguiente (Es probable que pida hacer login, para esto se puede usar docker login e iniciar sesión):
     
     docker pull stefano00123/prueba-fullstack:v1
     docker pull stefano00123/prueba-tenpo-front:latest
