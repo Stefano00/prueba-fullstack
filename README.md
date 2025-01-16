@@ -14,9 +14,10 @@ Este proyecto corresponde al backend de la Prueba Full Stack para Tenpo, encarga
 6. [Ejecución con Docker](#ejecución-con-docker)
 7. [Documentación de la API](#documentación-de-la-api)
 8. [Pruebas unitarias](#pruebas-unitarias)
-9. [Manejo de errores](#manejo-de-errores)
-10. [Mejoras pendientes](#mejoras-pendientes)
-11. [Créditos](#créditos)
+9. [Swagger](#swagger)
+10. [Manejo de errores](#manejo-de-errores)
+11. [Mejoras pendientes](#mejoras-pendientes)
+12. [Créditos](#créditos)
 
 
 ---
@@ -190,6 +191,15 @@ El proyecto incluye pruebas unitarias para servicios, repositorios y controlador
 mvn test
 ```
 
+## **Swagger**
+
+El proyecto incluye un swagger para poder revisar los servicios rest y usarlos:
+
+```bash
+`http://localhost:8080/swagger-ui/index.html`
+```
+
+
 ---
 
 ## **Manejo de errores**
@@ -203,7 +213,7 @@ Se implementa un manejador global de errores HTTP que devuelve respuestas estruc
 - **Uso de colas SQS para transacciones**: Al existir transacciones, lo ideal sería hacer uso de colas para que en caso de existir errores o algún reset de la aplicación, el mensaje siga encolado y pueda emitirse la solicitud correctamente.
 - **Servicio paginado desde el servidor**: Actualmente el servicio GET devuelve un listado, lo correcto sería que devuelva una cantidad límitada pero paginada para reducir el consumo de la base de datos y el rendimiento del sistema.
 - **Optimizar manejo de errores**: Mejorar la consistencia y claridad en las respuestas de error.
-- **Mejorar documentación con Swagger**: Asegurarse de que todos los endpoints estén documentados y accesibles en `/swagger-ui`.
+- **Mejorar documentación con Swagger**: Asegurarse de que todos los endpoints estén documentados y accesibles en `http://localhost:8080/swagger-ui/index.html`.
 
 ---
 
