@@ -92,35 +92,27 @@ class TransactionServiceTest {
                 .transactionDate(LocalDateTime.now())
                 .build();
         
-        // Simular la respuesta del repositorio
         when(transactionRepository.findAll()).thenReturn(List.of(transaction1, transaction2));
 
-        // Ejecutar el método del servicio
         List<Transaction> result = transactionService.getAllTransactions();
 
-        // Validar que el resultado no sea nulo y tenga los datos esperados
         assertNotNull(result);
         assertEquals(2, result.size(), "El tamaño de la lista no coincide con los datos simulados");
         assertEquals(transaction1.getTransactionId(), result.get(0).getTransactionId());
         assertEquals(transaction2.getTransactionId(), result.get(1).getTransactionId());
 
-        // Verificar que el repositorio fue llamado exactamente una vez
         verify(transactionRepository, times(1)).findAll();
     }
 
     @Test
     void getAllTransactions_ShouldReturnEmptyList_WhenNoDataExists() {
-        // Simular que findAll devuelve una lista vacía
         when(transactionRepository.findAll()).thenReturn(Collections.emptyList());
 
-        // Ejecutar el método del servicio
         List<Transaction> result = transactionService.getAllTransactions();
 
-        // Validar que el resultado no sea nulo y esté vacío
         assertNotNull(result);
         assertTrue(result.isEmpty(), "La lista debería estar vacía");
 
-        // Verificar que el método findAll del repositorio fue invocado una vez
         verify(transactionRepository, times(1)).findAll();
     }
 
@@ -265,33 +257,27 @@ class TransactionServiceTest {
     
     @Test
     void updateTransaction_ShouldThrowException_WhenAmountIsNegative() {
-        // Configurar transacción existente simulada
         Transaction existingTransaction = Transaction.builder()
                 .transactionId(1L)
                 .amount(1000)
                 .giro("Giro existente")
                 .build();
 
-        // Configurar datos de actualización con monto negativo
         Transaction newData = Transaction.builder()
                 .amount(-500) // Monto negativo
                 .giro("Nuevo giro")
                 .build();
 
-        // Simular comportamiento del repositorio
         when(transactionRepository.findById(1L)).thenReturn(java.util.Optional.of(existingTransaction));
 
-        // Ejecutar y validar que lanza una excepción
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             transactionService.updateTransaction(1L, newData);
         });
 
-        // Verificar el mensaje de la excepción
         assertEquals("El monto de la transacción no puede ser negativo.", exception.getMessage());
 
-        // Verificar interacciones con mocks
         verify(transactionRepository, times(1)).findById(1L);
-        verify(transactionRepository, never()).save(any(Transaction.class)); // Asegurarse de que no se guarde nada
+        verify(transactionRepository, never()).save(any(Transaction.class));
     }
 
 

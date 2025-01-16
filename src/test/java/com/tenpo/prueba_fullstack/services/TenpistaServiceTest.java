@@ -53,7 +53,7 @@ class TenpistaServiceTest {
         when(tenpistaRepository.findByTenpistaName(tenpistaName))
                 .thenReturn(Collections.emptyList());
         when(tenpistaRepository.save(any(Tenpista.class)))
-                .thenAnswer(invocation -> invocation.getArgument(0)); // Return the saved Tenpista
+                .thenAnswer(invocation -> invocation.getArgument(0));
 
         Tenpista result = tenpistaService.findOrCreateTenpistaByName(tenpistaName);
 
